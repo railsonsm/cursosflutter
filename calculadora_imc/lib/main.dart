@@ -21,9 +21,36 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text("Calculo de IMC"),
         centerTitle: mano,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.green,
         actions: <Widget>[
           IconButton(icon: Icon(Icons.refresh), onPressed: () => {}),
+        ],
+      ),
+      backgroundColor: Colors.white,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Icon(
+            Icons.person_outline,
+            size: 120.0,
+            color: Colors.green,
+          ),
+          TextField(
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+                labelText: "Peso (kg)",
+                labelStyle: TextStyle(color: Colors.green)),
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.green, fontSize: 25.0),
+          ),
+          TextField(
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+                labelText: "Altura (cm)",
+                labelStyle: TextStyle(color: Colors.green)),
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.green, fontSize: 25.0),
+          )
         ],
       ),
     );
