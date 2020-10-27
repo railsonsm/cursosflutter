@@ -34,8 +34,17 @@ class _HomeState extends State<Home> {
             padding: EdgeInsets.fromLTRB(17, 1, 7, 1),
             child: Row(
               children: [
-                TextField(
-                  decoration: InputDecoration,
+                Expanded(
+                    child: TextField(
+                  decoration: InputDecoration(
+                      labelText: "Nova tarefa",
+                      labelStyle: TextStyle(color: Color(0xFF00CE92))),
+                )),
+                RaisedButton(
+                  color: Color(0xFF00CE92),
+                  child: Text("Add"),
+                  textColor: Colors.white,
+                  onPressed: () => {},
                 )
               ],
             ),
