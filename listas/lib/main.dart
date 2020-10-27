@@ -18,7 +18,32 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List _toDoList = ["Railson", "Silva"];
+  final _todoController = TextEditingController();
+  List _toDoList = [];
+  Map<String, dynamic> _lasRemoved;
+  int _lasRemovedPos;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _readData().then((data) => {
+          setState(() {
+            _toDoList = json.decode(data);
+          })
+        });
+  }
+
+  void _addTodo() {
+    setState(() {
+      Map<String, dynamic> newTodo = Map();
+      newTodo["title"] = _todoController.text;
+      _todoController.text = "";
+      newTodo["ok"] = false;
+      _toDoList.add(newTodo);
+      _saveFile();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +61,7 @@ class _HomeState extends State<Home> {
               children: [
                 Expanded(
                     child: TextField(
+                  controller: _todoController,
                   decoration: InputDecoration(
                       labelText: "Nova tarefa",
                       labelStyle: TextStyle(color: Color(0xFF00CE92))),
@@ -44,7 +70,7 @@ class _HomeState extends State<Home> {
                   color: Color(0xFF00CE92),
                   child: Text("Add"),
                   textColor: Colors.white,
-                  onPressed: () => {},
+                  onPressed: () => _addTodo(),
                 )
               ],
             ),
@@ -53,20 +79,69 @@ class _HomeState extends State<Home> {
               child: ListView.builder(
             padding: EdgeInsets.only(top: 10),
             itemCount: _toDoList.length,
-            itemBuilder: (context, index) {
-              return CheckboxListTile(
-                title: Text(_toDoList[index]["title"]),
-                value: _toDoList[index]["ok"],
-                secondary: CircleAvatar(
-                    child: Icon(
-                  _toDoList[index]["ok"] ? Icons.check : Icons.error,
-                )),
-              );
-            },
+            itemBuilder: buildItem,
           ))
         ],
       ),
     );
+  }
+
+  Widget buildItem(context, index) {
+    return Dismissible(
+        key: Key(DateTime.now().microsecondsSinceEpoch.toString()),
+        background: Container(
+          color: Colors.red,
+          child: Align(
+            alignment: Alignment(-0.9, 0.0),
+            child: Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        direction: DismissDirection.startToEnd,
+        child: CheckboxListTile(
+          onChanged: (check) => {
+            setState(() {
+              _toDoList[index]["ok"] = check;
+              _saveFile();
+            })
+          },
+          checkColor: Colors.white,
+          activeColor: Color(0xFF00CE92),
+          title: Text(_toDoList[index]["title"]),
+          value: _toDoList[index]["ok"],
+          secondary: CircleAvatar(
+            child: Icon(
+              _toDoList[index]["ok"] ? Icons.check : Icons.error,
+              color: Colors.white,
+            ),
+            backgroundColor: Color(0xFF00CE92),
+          ),
+        ),
+        onDismissed: (direction) {
+          setState(() {
+            _lasRemoved = Map.from(_toDoList[index]);
+            _lasRemovedPos = index;
+            _toDoList.removeAt(index);
+            _saveFile();
+
+            final snack = SnackBar(
+                content: Text("Tarefa ${_lasRemoved["title"]} removida"),
+                action: SnackBarAction(
+                  label: "Desfazer",
+                  onPressed: () {
+                    setState(() {
+                      _toDoList.insert(_lasRemovedPos, _lasRemoved);
+                      _saveFile();
+                    });
+                  },
+                ),
+                duration: Duration(seconds: 2));
+
+            Scaffold.of(context).showSnackBar(snack);
+          });
+        });
   }
 
   Future<File> _saveFile() async {
