@@ -28,10 +28,8 @@ class LoginPage extends StatelessWidget {
               autofocus: false,
               decoration: InputDecoration(
                   hintText: "E-mail",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(32)),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32)),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
             ),
             SizedBox(
               height: 24,
@@ -41,10 +39,8 @@ class LoginPage extends StatelessWidget {
               autofocus: false,
               decoration: InputDecoration(
                   hintText: "Senha",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(32)),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32)),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
             ),
             SizedBox(
               height: 16,
@@ -53,8 +49,7 @@ class LoginPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 16),
               child: RaisedButton(
                 onPressed: () {},
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 padding: EdgeInsets.all(12),
                 color: Get.theme.primaryColor,
                 child: Text(
