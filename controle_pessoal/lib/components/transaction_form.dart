@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class TransactioForm extends StatelessWidget {
-  TransactioForm({Key key}) : super(key: key);
+  TransactioForm({Key key, this.onSubmit}) : super(key: key);
 
   final titleController = TextEditingController();
   final valueController = TextEditingController();
+
+  final void Function(String, double) onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,11 @@ class TransactioForm extends StatelessWidget {
                 ),
               ),
               FlatButton(
-                onPressed: () {},
+                onPressed: () {
+                  final title = valueController.text;
+                  final value = double.tryParse(valueController.text) ?? 0.0;
+                  onSubmit(title, value);
+                },
                 textColor: Colors.purple,
                 child: Text("Nova   transação"),
               )
