@@ -17,6 +17,16 @@ class SpensesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(),
+      theme: ThemeData(
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          fontFamily: 'Quicksand',
+          appBarTheme: AppBarTheme(
+              textTheme: ThemeData.light().textTheme.copyWith(
+                      headline6: TextStyle(
+                    fontFamily: 'OpenSanss',
+                    fontSize: 20,
+                  )))),
     );
   }
 }
