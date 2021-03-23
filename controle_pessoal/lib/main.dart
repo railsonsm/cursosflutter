@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:controle_pessoal/components/chart.dart';
 import 'package:controle_pessoal/components/transaction_form.dart';
 import 'package:controle_pessoal/components/transaction_list.dart';
 import 'package:controle_pessoal/models/transaction.dart';
@@ -38,11 +39,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [
-    // Transaction(
-    //     id: 't1', title: 'Novo Tenis', value: 310.76, date: DateTime.now()),
-    // Transaction(
-    //     id: 't2', title: 'Conta Luz', value: 211.76, date: DateTime.now()),
+    Transaction(
+        id: 't1',
+        title: 'Novo Tenis',
+        value: 310.76,
+        date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        id: 't2', title: 'Conta Luz', value: 211.76, date: DateTime.now()),
   ];
+
+  List<Transaction> get _recentTransactions {
+    return _transactions
+        .where(
+            (tr) => tr.date.isAfter(DateTime.now().subtract(Duration(days: 7))))
+        .toList();
+  }
 
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
@@ -84,13 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                child: Text("Gráfico"),
-                elevation: 3,
-              ),
-            ),
+            Chart(recentTrasaction: _recentTransactions),
             TransactionalList(
               transactions: _transactions,
             )
