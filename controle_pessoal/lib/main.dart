@@ -120,21 +120,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: appBar,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-                height: height * 0.3,
-                child: Chart(recentTrasaction: _recentTransactions)),
-            Container(
-              height: height * 0.7,
-              child: TransactionalList(
-                transactions: _transactions,
-                onRemove: _deleteTransaction,
-              ),
-            )
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                  height: height * 0.3,
+                  child: Chart(recentTrasaction: _recentTransactions)),
+              Container(
+                height: height * 0.7,
+                child: TransactionalList(
+                  transactions: _transactions,
+                  onRemove: _deleteTransaction,
+                ),
+              )
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

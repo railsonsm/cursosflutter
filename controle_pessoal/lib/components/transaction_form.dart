@@ -38,57 +38,65 @@ class _TransactioFormState extends State<TransactioForm> {
 
   @override
   Widget build(BuildContext context) {
+    var b = MediaQuery.of(context).viewInsets.bottom;
     return Container(
-      child: Card(
-        elevation: 5,
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              TextField(
-                controller: _titleController,
-                decoration: InputDecoration(
-                  labelText: 'Título',
-                ),
-              ),
-              TextField(
-                controller: _valueController,
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
-                onSubmitted: (_) => _submitForm(),
-                decoration: InputDecoration(
-                  labelText: 'Valor (R\$)',
-                ),
-              ),
-              Container(
-                height: 70,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(_selectdDate == null
-                        ? 'Nenhuma data selecionada'
-                        : 'Data selecionada ${DateFormat('d/M/y').format(_selectdDate)}'),
-                    FlatButton(
-                        textColor: Theme.of(context).primaryColor,
-                        onPressed: _showDatePicker,
-                        child: Text(
-                          'Selecionar data',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  RaisedButton(
-                    onPressed: _submitForm,
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.white,
-                    child: Text("Nova   transação"),
+      child: SingleChildScrollView(
+        child: Card(
+          elevation: 5,
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: 10,
+              right: 10,
+              left: 10,
+              bottom: 10 + MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: Column(
+              children: [
+                TextField(
+                  controller: _titleController,
+                  decoration: InputDecoration(
+                    labelText: 'Título',
                   ),
-                ],
-              )
-            ],
+                ),
+                TextField(
+                  controller: _valueController,
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  onSubmitted: (_) => _submitForm(),
+                  decoration: InputDecoration(
+                    labelText: 'Valor (R\$)',
+                  ),
+                ),
+                Container(
+                  height: 70,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(_selectdDate == null
+                          ? 'Nenhuma data selecionada'
+                          : 'Data selecionada ${DateFormat('d/M/y').format(_selectdDate)}'),
+                      FlatButton(
+                          textColor: Theme.of(context).primaryColor,
+                          onPressed: _showDatePicker,
+                          child: Text(
+                            'Selecionar data',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    RaisedButton(
+                      onPressed: _submitForm,
+                      color: Theme.of(context).primaryColor,
+                      textColor: Colors.white,
+                      child: Text("Nova   transação"),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

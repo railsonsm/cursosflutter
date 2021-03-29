@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1061677604456",
+    "project_id": "diuliusdev",
+    "storage_bucket": "diuliusdev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061677604456:android:b69aeac55e5cb22897e5dd",
+        "android_client_info": {
+          "package_name": "br.com.diulius"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061677604456-5t7r967ehn8u6jj10pv95cnjg2i9g9al.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.diulius",
+            "certificate_hash": "4d0f6524d4bca6a28354f3d243563543f82a3149"
+          }
+        },
+        {
+          "client_id": "1061677604456-1aqcpfja06h60hv412qo9jdvd86kk8g3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFGUReTgwBAf3mIP_G1K2hYPjkp5S-LjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061677604456-1aqcpfja06h60hv412qo9jdvd86kk8g3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
