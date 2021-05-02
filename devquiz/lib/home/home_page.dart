@@ -1,6 +1,6 @@
-import 'package:devquiz/core/home/widgets/app_bar_widget.dart';
-import 'package:devquiz/core/home/widgets/level_button_widget.dart';
-import 'package:devquiz/core/home/widgets/quiz_card_widget.dart';
+import 'package:devquiz/home/widgets/app_bar_widget.dart';
+import 'package:devquiz/home/widgets/level_button_widget.dart';
+import 'package:devquiz/home/widgets/quiz_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {

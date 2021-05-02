@@ -1,5 +1,5 @@
 import 'package:devquiz/core/core.dart';
-import 'package:devquiz/core/home/widgets/score_card.dart';
+import 'package:devquiz/home/widgets/score_card.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends PreferredSize {
