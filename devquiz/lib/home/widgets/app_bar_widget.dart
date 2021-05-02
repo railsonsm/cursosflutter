@@ -1,9 +1,11 @@
 import 'package:devquiz/core/core.dart';
 import 'package:devquiz/home/widgets/score_card.dart';
+import 'package:devquiz/shared/models/user_mode.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends PreferredSize {
-  AppBarWidget()
+  final UserModel user;
+  AppBarWidget(this.user)
       : super(
           preferredSize: Size.fromHeight(250),
           child: Container(
@@ -23,7 +25,7 @@ class AppBarWidget extends PreferredSize {
                         style: AppTextStyles.title,
                         children: [
                           TextSpan(
-                            text: 'Railson',
+                            text: user.name,
                             style: AppTextStyles.titleBold,
                             children: [],
                           )

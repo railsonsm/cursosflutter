@@ -5,7 +5,15 @@ import 'package:devquiz/shared/widgets/progress_widget.dart';
 import 'package:flutter/material.dart';
 
 class QuizCardWidget extends StatelessWidget {
-  const QuizCardWidget({Key? key}) : super(key: key);
+  final String title;
+  final String completed;
+  final double percent;
+  const QuizCardWidget(
+      {Key? key,
+      required this.title,
+      required this.completed,
+      required this.percent})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +33,7 @@ class QuizCardWidget extends StatelessWidget {
           Container(
               height: 40, width: 40, child: Image.asset(AppImages.blocks)),
           Text(
-            "Gerenciamento de estado",
+            this.title,
             style: AppTextStyles.heading15,
           ),
           Row(
@@ -33,7 +41,7 @@ class QuizCardWidget extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: Text(
-                  "3/10",
+                  this.completed,
                   style: AppTextStyles.body11,
                 ),
               ),
